@@ -1,0 +1,64 @@
+Sqlite Windows 32 tools
+https://www.sqlite.org/2020/sqlite-tools-win32-x86-3320100.zip
+
+Sqlite Studio
+https://github.com/pawelsalawa/sqlitestudio/releases/download/3.2.1/InstallSQLiteStudio-3.2.1.exe
+
+Nodejs
+https://nodejs.org/dist/v12.18.0/node-v12.18.0-x86.msi
+
+References
+HTML CSS Javascript
+https://developer.mozilla.org/it/docs/Web
+
+
+Before start coding
+
+Setup development environment
+- Installare MS VSCode
+Setup DB
+- Installare Sqlite
+- Installare SqliteStudio
+Setup BE
+- Installare nodejs
+Setup FE
+- Installare Live web server
+    npm install -g live-server
+- Check Live web server version
+    live-server -v
+- Lanciare BE
+    - entrare cartella BE
+    - npm install (solo la prima volta)
+    - npm run start:server
+- Lanciare FE
+    live-server fe    
+
+Challenge 1
+1. Creare nuovo html file
+2. Aggiungere un titolo (h1) e diversi paragrafi (p)
+3. Lanciare server e visualizzare nel browser la pagina
+
+Challenge 2
+1. Creare e collegare alla pagina HTML un file Javascript
+2. Cancellare i tags p che contengono una parola a scelta, senza toccare gli altri
+
+Challenge 3
+1. Modificare colore e aggiungere label
+
+Challenge 4
+1. Aggiungere un pulsante
+2. Gestire il click del pulsante scrivendo un messaggio sulla console
+
+Challenge 5
+1. Cambiare ordine di visualizzazione dei post dal più recente, in ordine di inserimento
+
+Challenge 6
+1. Aggiungere un nuovo campo nel db: author (tipo string, non null)
+
+Challenge 7
+1. Gestire il nuovo campo author nel BE modificando le due funzioni /api/post/add e /api/posts
+2. Visualizzare il nuovo campo author nel FE e gestire l'input
+
+Super Challenge
+1. BE: Aggiungere la funzione di cancellazione di un post: /api/post/delete/:idPost
+2. FE: Aggiungere il pulsante di delete del post (vicino al titolo), chiamare la funzione BE di cancellazione e aggiornare la lista dei posts
