@@ -24,12 +24,12 @@ app.use((req, res, next) => {
 });
 
 app.post("/api/post/add", (req, res, next) => {
-  const post = new Post(0, req.body.title, req.body.content);
+  const post = new Post(0, req.body.title, req.body.author, req.body.content);
   console.log(post);
 
   db.run(
-    `INSERT INTO blog(title, content) VALUES(?, ?)`,
-    [post.title, post.content],
+    `INSERT INTO blog(title, author, content) VALUES(?, ?)`,
+    [post.title, post.author, post.content],
     function (err) {
       if (err) {
         console.log(err.message);
@@ -51,30 +51,29 @@ app.post("/api/post/add", (req, res, next) => {
 app.get("/api/posts", (req, res, next) => {
   var posts = [];
 
-  db.all(
-    `SELECT id,
-                  title,
-                  content
-            FROM blog ORDER BY id DESC`,
-    function (err, rows) {
-      if (err) {
-        console.error(err.message);
-        res.status(500).json({
-          message: "Posts fetched error: " + err.message,
-          posts: posts,
-        });
-        return;
-      }
-      rows.forEach((element) => {
-        let post = new Post(element.id, element.title, element.content);
-        posts.push(post);
-      });
-      res.status(200).json({
-        message: "Posts fetched successfully!",
+  db.all(`SELECT * FROM blog ORDER BY id DESC`, function (err, rows) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).json({
+        message: "Posts fetched error: " + err.message,
         posts: posts,
       });
+      return;
     }
-  );
+    rows.forEach((element) => {
+      let post = new Post(
+        element.id,
+        element.title,
+        element.author,
+        element.content
+      );
+      posts.push(post);
+    });
+    res.status(200).json({
+      message: "Posts fetched successfully!",
+      posts: posts,
+    });
+  });
 });
 
 module.exports = app;
