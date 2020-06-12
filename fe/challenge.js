@@ -1,2 +1,2 @@
-/* document.getElementById("first").innerHTML = "";
-document.getElementById("fourth").innerHTML = ""; */
+document.getElementById("").innerHTML = "";
+document.getElementById("").innerHTML = "";
