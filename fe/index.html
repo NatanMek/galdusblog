@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <h1>Galdus Blog</h1>
-  </head>
-  <body>
-    <form id="newForm">
-      <div style="margin-bottom: 10px;">
-        <input id="fields" type="text" placeholder="Titolo" name="title" />
-        <input id="fields" type="text" placeholder="Autore" name="author" />
-        <input id="fields" type="text" placeholder="Testo" name="content" />
-      </div>
-      <button id="newContentBtn">Nuovo contenuto</button>
-      <button id="emptyFormBtn">Svuota campi</button>
-    </form>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+  </style>
+  <div class="text-body m-3 p-2 jumbotron">
+    <h1 style="color:blue; font-family: Lobster;" class="display-4">
+      <a href="https://fontmeme.com/ifont/font-gloss-and-bloom/"><img
+          src="https://fontmeme.com/permalink/200619/d1804600dec89a524de8751705b6a9e5.png" alt="font-gloss-and-bloom"
+          class="container"></a>
+    </h1>
+</head>
+
+<body>
+  <br />
+  <form id="newForm" class="form-inline">
+    <div class="input-group mb-2 mr-sm-2">
+      <input type="text" class="form-control" id="fields" placeholder="Titolo" name="title">
+    </div>
+    <div class="input-group mb-2 mr-sm-2">
+      <input type="text" class="form-control" id="fields" placeholder="Autore" name="author">
+    </div>
+    <div class="input-group mb-2 mr-sm-2">
+      <input type="text" class="form-control" id="fields" placeholder="Testo" name="content">
+    </div>
+    <button type="submit" class="bttn-jelly bttn-md bttn-primary btn-md mb-2 mr-sm-2"
+      id="newContentBtn">Aggiungi</button>
+    <button type="click" class="bttn-jelly bttn-md bttn-primary btn-md mb-2 mr-sm-2" id="emptyFormBtn">Svuota</button>
+    <br />
     <div id="postsPlace"></div>
-    <script src="blog-app.js"></script>
-  </body>
+  </form>
+  <script src="blog-app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  </div>
+</body>
+
 </html>

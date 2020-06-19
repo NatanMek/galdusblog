@@ -23,12 +23,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/api/post/add", (req, res, next) => {
+app.post("/api/posts/add", (req, res, next) => {
   const post = new Post(0, req.body.title, req.body.author, req.body.content);
   console.log(post);
 
   db.run(
-    `INSERT INTO blog(title, author, content) VALUES(?, ?)`,
+    `INSERT INTO blog(title, author, content) VALUES(?, ?, ?)`,
     [post.title, post.author, post.content],
     function (err) {
       if (err) {
@@ -48,32 +48,55 @@ app.post("/api/post/add", (req, res, next) => {
   });
 });
 
-app.get("/api/posts", (req, res, next) => {
-  var posts = [];
+app.post("/api/posts/delete/:id", (req, res, next) => {
+  const idPost = req.params.id;
 
-  db.all(`SELECT * FROM blog ORDER BY id DESC`, function (err, rows) {
+  db.run("DELETE FROM blog WHERE id = ?", [idPost], function (err) {
     if (err) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).json({
-        message: "Posts fetched error: " + err.message,
-        posts: posts,
+        message: "Delete post failed error: " + err.message,
       });
       return;
     }
-    rows.forEach((element) => {
-      let post = new Post(
-        element.id,
-        element.title,
-        element.author,
-        element.content
-      );
-      posts.push(post);
-    });
-    res.status(200).json({
-      message: "Posts fetched successfully!",
-      posts: posts,
-    });
+    // get the last insert id
+    console.log(`A row has been deleted with rowid ${this.lastID}`);
   });
+
+  res.status(200).json({
+    message: "Post deleted successfully",
+  });
+});
+
+app.get("/api/posts", (req, res, next) => {
+  var posts = [];
+
+  db.all(
+    `SELECT id, title, author, content FROM blog ORDER BY id DESC`,
+    function (err, rows) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).json({
+          message: "Posts fetched error: " + err.message,
+          posts: posts,
+        });
+        return;
+      }
+      rows.forEach((element) => {
+        let post = new Post(
+          element.id,
+          element.title,
+          element.author,
+          element.content
+        );
+        posts.push(post);
+      });
+      res.status(200).json({
+        message: "Posts fetched successfully!",
+        posts: posts,
+      });
+    }
+  );
 });
 
 module.exports = app;
