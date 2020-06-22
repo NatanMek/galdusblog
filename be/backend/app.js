@@ -48,7 +48,7 @@ app.post("/api/posts/add", (req, res, next) => {
   });
 });
 
-app.post("/api/posts/delete/:id", (req, res, next) => {
+app.delete("/api/posts/delete/:id", (req, res, next) => {
   const idPost = req.params.id;
 
   db.run("DELETE FROM blog WHERE id = ?", [idPost], function (err) {

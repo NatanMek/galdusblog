@@ -8,12 +8,19 @@ const renderPosts = function () {
 
   posts.forEach(function (post) {
     const deleteButton = document.createElement("button");
+    deleteButton.name = post.id; // id del post da cancellare
+    deleteButton.id = "#deleteBtn";
+    deleteButton.addEventListener("click", function (e) {
+      console.log(e.srcElement.name);
+      console.log(e.srcElement.id);
+      deletePost(e.srcElement.name, sendPostCallbackFn);
+    });
     deleteButton.className = "bttn-jelly bttn-sm bttn-danger";
-    deleteButton.type = "delete";
     deleteButton.textContent = "Delete";
-    deleteButton.id = post.id;
     const sep1 = document.createElement("hr");
+    sep1.className = "style13";
     const h2Title = document.createElement("h2");
+    h2Title.className = "title";
     h2Title.textContent = post.title;
     h2Title.append("   ");
     h2Title.append(deleteButton);
@@ -76,12 +83,11 @@ const deletePost = function (idPost, callbackFn) {
   const request = new XMLHttpRequest();
   request.open("DELETE", "http://127.0.0.1:3000/api/posts/delete/" + idPost);
   request.setRequestHeader("Content-Type", "application/json");
-  request.send(JSON.stringify(idPost));
+  request.send();
 
   request.addEventListener("readystatechange", (e) => {
     if (e.target.readyState === 4 && e.target.status === 200) {
-      const responseData = JSON.parse(e.target.responseText);
-      callbackFn(undefined, responseData.posts);
+      callbackFn(undefined);
     } else if (e.target.readyState === 4) {
       callbackFn("Errore nella chiamata", undefined);
     }
@@ -110,29 +116,25 @@ const getPostsCallbackFn = function (error, data) {
   }
 };
 
-document.querySelector("#newForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const newPost = {
-    id: undefined,
-    title: e.target.elements.title.value,
-    author: e.target.elements.author.value,
-    content: e.target.elements.content.value,
-  };
-  posts.push(newPost);
-  clearFields();
-  addNewPost(newPost, sendPostCallbackFn);
-});
-
-const deleteButtons = document.getElementsByClassName(
-  "btn btn-outline-danger btn-sm"
-);
-
-for (var i = 0; i < deleteButtons.length; i++) {
-  deleteButtons[i].addEventListener("click", function (e) {
-    e.preventDefault();
-    console.log("Eliminare Post");
-  });
+function onDeleteClick(clicked_id) {
+  alert(clicked_id);
 }
+
+document
+  .querySelector("#newContentBtn")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    const form = document.querySelector("#newForm");
+    const newPost = {
+      id: undefined,
+      title: form.elements.title.value,
+      content: form.elements.content.value,
+      author: form.elements.author.value,
+    };
+    posts.push(newPost);
+    clearFields();
+    addNewPost(newPost, sendPostCallbackFn);
+  });
 
 getPosts(getPostsCallbackFn);
 
