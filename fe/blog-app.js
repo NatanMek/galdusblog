@@ -17,6 +17,14 @@ const renderPosts = function () {
     });
     deleteButton.className = "bttn-jelly bttn-sm bttn-danger";
     deleteButton.textContent = "Delete";
+    const updateButton = document.createElement("button");
+    updateButton.name = post.id;
+    updateButton.id = "#updateBtn";
+    updateButton.addEventListener("click", function (e) {
+      document.getElementById("myModal").showModal();
+    });
+    updateButton.className = "bttn-jelly bttn-sm bttn-warning";
+    updateButton.textContent = "Edit";
     const sep1 = document.createElement("hr");
     sep1.className = "style13";
     const h2Title = document.createElement("h2");
@@ -24,6 +32,8 @@ const renderPosts = function () {
     h2Title.textContent = post.title;
     h2Title.append("   ");
     h2Title.append(deleteButton);
+    h2Title.append("   ");
+    h2Title.append(updateButton);
     const h4Author = document.createElement("h4");
     h4Author.textContent = post.author;
     const pContent = document.createElement("p");
@@ -84,6 +94,23 @@ const deletePost = function (idPost, callbackFn) {
   request.open("DELETE", "http://127.0.0.1:3000/api/posts/delete/" + idPost);
   request.setRequestHeader("Content-Type", "application/json");
   request.send();
+
+  request.addEventListener("readystatechange", (e) => {
+    if (e.target.readyState === 4 && e.target.status === 200) {
+      callbackFn(undefined);
+    } else if (e.target.readyState === 4) {
+      callbackFn("Errore nella chiamata", undefined);
+    }
+  });
+};
+
+const updatePost = function (idPost, newPost, callbackFn) {
+  console.log(idPost);
+  console.log(newPost);
+  const request = new XMLHttpRequest();
+  request.open("UPDATE", "http://127.0.0.1:3000/api/posts/" + idPost);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.send(JSON.stringify(newPost));
 
   request.addEventListener("readystatechange", (e) => {
     if (e.target.readyState === 4 && e.target.status === 200) {

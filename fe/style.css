@@ -1661,9 +1661,3 @@ hr.style13 {
   text-align: center;
   margin-left: 80px;
 }
-
-@tailwind base;
-
-@tailwind components;
-
-@tailwind utilities;

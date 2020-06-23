@@ -68,6 +68,31 @@ app.delete("/api/posts/delete/:id", (req, res, next) => {
   });
 });
 
+app.put("/api/posts/:id", (req, res, next) => {
+  const idPost = req.params.id;
+  console.log(post);
+
+  db.run(
+    `UPDATE blog SET title = ?, author = ?, content = ? WHERE id = ?`,
+    [post.title, post.author, post.content, idPost],
+    function (err) {
+      if (err) {
+        console.log(err.message);
+        res.status(500).json({
+          message: "Update Post failed error: " + err.message,
+        });
+        return;
+      }
+      // get the last insert id
+      console.log(`A row has been updated with rowid ${this.lastID}`);
+    }
+  );
+
+  res.status(200).json({
+    message: "Post updated successfully",
+  });
+});
+
 app.get("/api/posts", (req, res, next) => {
   var posts = [];
 

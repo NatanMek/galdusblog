@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
@@ -39,16 +39,16 @@
           class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
           id="fields" placeholder="Testo" name="content">
       </div>
-      <button type="submit" class="bttn-jelly bttn-md bttn-primary btn-md mb-2 mr-sm-2"
-        id="newContentBtn">Aggiungi</button>
-      <button type="click" class="bttn-jelly bttn-md bttn-primary btn-md mb-2 mr-sm-2" id="emptyFormBtn">Svuota</button>
+      <button type="submit" class="bttn-jelly bttn-md bttn-primary btn-md mb-2 mr-sm-2" id="newContentBtn">Add</button>
+      <button type="click" class="bttn-jelly bttn-md bttn-primary btn-md mb-2 mr-sm-2" id="emptyFormBtn">Empty</button>
   </div>
   <div class="col-sm">
-    <div id="postsPlace"></div>
+    <div id="message"></div>
+    <div id="postsPlace">
+    </div>
   </div>
   <br />
   </form>
-  <script src="blog-app.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -58,8 +58,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="blog-app.js"></script>
   </div>
   </div>
 </body>
