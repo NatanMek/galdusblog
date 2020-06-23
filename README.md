@@ -6,7 +6,7 @@
 > Simple Blog with some challenges to do.
 
 <p>
-    <img src="Schermata 2020-06-23 alle 10.47.25" />
+    <img src="Schermata_2020-06-23_alle_10.47.25.png" />
 </p>
 
 ## Author
